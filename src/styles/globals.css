@@ -1,8 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
 
-:root {
+/* @layer base {
+  html {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+} */
+
+* {
+  padding: 0;
+  margin: 0;
+  color: #191A23;
+}
+
+body {
+  padding: 2% 5% 0 5%;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* input[type='file'] {
+  display: none;
+} */
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +46,4 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */

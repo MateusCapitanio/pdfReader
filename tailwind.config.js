@@ -7,11 +7,21 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'space': ['Space Grotesk', 'sans-serif']
+      },
+      dropShadow: {
+        '3xl': '0px 5px 1px rgb(25, 26, 35)'
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        'black-app': '#191A23',
+        'green-app': '#B9FF66'
+      }
     },
   },
   plugins: [],
