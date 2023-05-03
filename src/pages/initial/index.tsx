@@ -1,8 +1,17 @@
-import { PaperPlaneTilt } from '@phosphor-icons/react';
 import React from 'react';
+import { Check, CheckFat, PaperPlaneTilt } from '@phosphor-icons/react';
+
+import { FaCheck } from 'react-icons/fa';
 
 export default function Initial() {
   const arrayWords = ['React', 'Node', 'vfx', 'React', 'Node', 'vfx', 'React', 'Node', 'vfx', 'React', 'Node', 'vfx', 'React', 'Node', 'vfx',]
+  const [checkeds, setCheckeds] = React.useState<string[]>([]);
+
+  const handleCheckInputs = (e: any) => {
+    const icon = document.querySelector(`#${e.target.id}-icon`);
+    icon?.classList.toggle('hidden')
+  }
+
   return (
     <main className='w-full'>
       <div className=''>
@@ -20,11 +29,20 @@ export default function Initial() {
           </div>
           <div className='my-10 bg-green-app border rounded-3xl 2xl:mr-60 border-solid border-black-app drop-shadow-3xl'>
             <div className='flex flex-col items-center m-5'>
-              <h1 className='text-lg sm:text-3xl font-bold bg-white p-1 px-5 rounded-lg'>Selecione as palavras chave:</h1>
+              <h1 className='text-lg sm:text-3xl font-bold bg-white p-1 px-5 rounded-lg'>Selecione as palavras-chave:</h1>
               <section className='grid grid-cols-3 sm:grid-cols-4 my-10 w-full'>
-                {arrayWords.map((item) => (
-                  <label className='flex gap-2 items-center' htmlFor={item}>
-                    <input type='checkbox' id={item} />
+                {arrayWords.map((item, i) => (
+                  <label onChange={handleCheckInputs} key={`${item}-${i}`} className='flex gap-2 items-center' htmlFor={`${item}-${i}`}>
+                    <div className='flex relative'>
+                      <input className='appearance-none h-4 w-4 border rounded border-black-app bg-white' type='checkbox' id={`${item}-${i}`} />
+                      <span className='absolute left-0.5'>
+                        <FaCheck
+                          color='#191A23'
+                          className={`w-5 hidden`}
+                          id={`${item}-${i}-icon`}
+                        />
+                      </span>
+                    </div>
                     <p>{item}</p>
                   </label>
                 ))}
@@ -36,7 +54,7 @@ export default function Initial() {
                   <p className='text-gray-500 ml-5'>Selecione os arquivos</p>
                   <PaperPlaneTilt className='mr-2 ' color='#191A23' size={32} />
                 </label>
-                  <input className='hidden' id='inputFilesPDF' type='file' />
+                <input accept='.pdf' className='hidden' id='inputFilesPDF' type='file' multiple onChange={(e: any) => console.log(e.target.files)} />
               </section>
               <button type='submit' className='bg-black-app text-white py-3 px-5 mt-5 font-bold text-xl rounded'>Analisar</button>
             </div>
