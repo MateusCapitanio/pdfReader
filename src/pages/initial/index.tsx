@@ -3,20 +3,52 @@ import { Check, CheckFat, PaperPlaneTilt } from '@phosphor-icons/react';
 
 import { FaCheck } from 'react-icons/fa';
 
+// redux
+import { useSelector } from 'react-redux';
+
+interface StateUser {
+  user: {
+    name: 'string';
+    isLogged: boolean;
+  }
+}
+
 export default function Initial() {
-  const arrayWords = ['React', 'Node', 'vfx', 'React', 'Node', 'vfx', 'React', 'Node', 'vfx', 'React', 'Node', 'vfx', 'React', 'Node', 'vfx',]
+  const arrayWords = [
+    'Character animation',
+    'Anticipation',
+    'Inertia',
+    'Staging',
+    'Cinema 4D',
+    'Rigging',
+    'Unreal ControlRig',
+    'Unreal Blueprint',
+    'Unreal Niagara',
+    'Unreal Material Editor',
+    'Blender',
+    'Maya',
+    'Houdini',
+    'PBR',
+    'English',
+
+  ]
   const [checkeds, setCheckeds] = React.useState<string[]>([]);
 
   const handleCheckInputs = (e: any) => {
     const icon = document.querySelector(`#${e.target.id}-icon`);
     icon?.classList.toggle('hidden')
+
+    console.log(`#${e.target.id}-icon`)
   }
 
   return (
     <main className='w-full'>
       <div className=''>
-        <span className='bg-green-app text-black-app p-2 font-bold px-4 rounded text-lg'>PDF Reader</span>
-        <div className='flex items-center mt-28 justify-center xl:justify-between flex-wrap '>
+        <div className='flex items-center justify-between'>
+          <span className='bg-green-app text-black-app p-2 font-bold px-4 rounded text-lg'>PDF Reader</span>
+          {/* <h1 className='text-3xl'>Olá Renata</h1> */}
+        </div>
+        <div className='flex items-center mt-28 justify-center 2xl:justify-between flex-wrap '>
           {/* <div className='flex items-center mt-28 justify-between flex-wrap bg-red-500'> */}
           <div className=' max-w-xl'>
             <h1 className='text-4xl font-medium font-space'>
@@ -27,19 +59,19 @@ export default function Initial() {
               busca por informações dentro daqueles documentos.
             </p>
           </div>
-          <div className='my-10 bg-green-app border rounded-3xl 2xl:mr-60 border-solid border-black-app drop-shadow-3xl'>
+          <div className='my-10 max-w-2xl bg-green-app border rounded-3xl  border-solid border-black-app drop-shadow-3xl'>
             <div className='flex flex-col items-center m-5'>
               <h1 className='text-lg sm:text-3xl font-bold bg-white p-1 px-5 rounded-lg'>Selecione as palavras-chave:</h1>
               <section className='grid grid-cols-3 sm:grid-cols-4 my-10 w-full'>
                 {arrayWords.map((item, i) => (
-                  <label onChange={handleCheckInputs} key={`${item}-${i}`} className='flex gap-2 items-center' htmlFor={`${item}-${i}`}>
+                  <label onChange={handleCheckInputs} key={`${item}-${i}`} className='flex gap-2 items-center' htmlFor={item.includes(' ') ? item.replace(/\s/g, "") : item}>
                     <div className='flex relative'>
-                      <input className='appearance-none h-4 w-4 border rounded border-black-app bg-white' type='checkbox' id={`${item}-${i}`} />
+                      <input className='appearance-none h-4 w-4 border rounded border-black-app bg-white' type='checkbox' id={item.includes(' ') ? item.replace(/\s/g, "") : item} />
                       <span className='absolute left-0.5'>
                         <FaCheck
                           color='#191A23'
                           className={`w-5 hidden`}
-                          id={`${item}-${i}-icon`}
+                          id={item.includes(' ') ? item.replace(/\s/g, "")+'-icon' : `${item}-icon`}
                         />
                       </span>
                     </div>
